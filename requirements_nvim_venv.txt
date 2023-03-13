@@ -40,3 +40,17 @@ pep8==1.5.7
 pycodestyle==2.2.0
 pyflakes==0.8.1
 pynvim==0.4.3
+autoflake==0.6.6
+autopep8==1.2.4
+codestyle==0.4.3
+debugpy==1.6.6
+flake8==3.2.1
+future==0.18.3
+greenlet==2.0.2
+mccabe==0.5.3
+msgpack==1.0.5
+neovim==0.3.1
+pep8==1.5.7
+pycodestyle==2.2.0
+pyflakes==0.8.1
+pynvim==0.4.3
