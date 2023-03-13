@@ -1,9 +1,10 @@
 #!/bin/zsh
 
 cp ~/.config/nvim/lua/custom . -r
-cp ~/.zshrc .
-cp ~/.bashrc .
-cp ~/.p10k.zsh .
+rm -rf ./custom/.git/
+cp ~/.zshrc zshrc
+cp ~/.bashrc bashrc
+cp ~/.p10k.zsh p10k.zsh
 
 source $JUPYTER_VENV
 pip freeze >> requirements_jupyter_venv.txt
@@ -21,6 +22,8 @@ pip freeze >> requirements_system.txt
 
 pamac list >> system_packages.txt
 
+DATE=$(date +"%x")
+
 git add *
-git commit -m 'Update files at $(date +%"x")'
+git commit -m "Update files at $DATE"
 git push -u
