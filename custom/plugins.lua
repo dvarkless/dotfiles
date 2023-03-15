@@ -1,10 +1,9 @@
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
-local plugins = {
+return {
 
   -- Override plugin definition options
-
   {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
@@ -13,7 +12,7 @@ local plugins = {
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
-          require("custom.configs.null-ls")
+          require "custom.configs.null-ls"
         end,
       },
       {
@@ -24,10 +23,11 @@ local plugins = {
           vim.api.nvim_create_user_command("MasonInstallAll", function()
             vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
           end, {})
-          require("custom.configs.lspconfig") -- Load in lsp config
+          require "plugins.configs.lspconfig"
+          require "custom.configs.lspconfig" -- Load in lsp config
         end,
       },
-      "williamboman/mason-lspconfig.nvim"
+      "williamboman/mason-lspconfig.nvim",
     },
     config = function() end, -- Override to setup mason-lspconfig
   },
@@ -38,10 +38,8 @@ local plugins = {
     opts = overrides.treesitter,
   },
 
-
-  ["Pocco81/TrueZen.nvim"] = {
-    disable = false,
-    enable = true,
+  {
+    "Pocco81/TrueZen.nvim",
     cmd = {
       "TZAtaraxis",
       "TZMinimalist",
@@ -53,18 +51,17 @@ local plugins = {
   },
 
   -- get highlight group under cursor
-  ["nvim-treesitter/playground"] = {
+  {
+    "nvim-treesitter/playground",
     cmd = "TSCaptureUnderCursor",
-    config = function()
-    end,
+    config = function() end,
   },
 
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
-
-  -- Install a plugin
+  ------------------- MISC GENERAL --------------------------------
   {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
@@ -72,55 +69,63 @@ local plugins = {
       require("better_escape").setup()
     end,
   },
-
-  ["folke/which-key.nvim"] = {
+  {
+    "folke/which-key.nvim",
+    lazy = false,
     disable = false,
   },
 
-  ["goolord/alpha-nvim"] = {
-    disable = false,
-    enable = true,
-    cmd = "Alpha",
-    override_options = overrides.alpha,
-  },
-
-  ["neovim/nvim-lspconfig"] = {
+  {
+    "rcarriga/nvim-notify",
+    lazy = false,
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
+      require "custom.configs.notify"
+    end,
+  },
+  ------------------------ DEBUG -----------------------------
+  {
+    "mfussenegger/nvim-dap",
+    lazy = false,
+    config = function()
+      require "custom.configs.dap"
     end,
   },
 
-
-  ["mfussenegger/nvim-dap"] = {
+  {
+    "rcarriga/nvim-dap-ui",
+    lazy = false,
     config = function()
-        require('custom.configs.dap')
+      require "custom.configs.dap-ui"
     end,
   },
 
-  ['rcarriga/nvim-dap-ui'] = {
+  {
+    "mfussenegger/nvim-dap-python",
+    lazy = false,
     config = function()
-        require('custom.configs.dap-ui')
+      require "custom.configs.dap-python"
     end,
   },
 
-  ["mfussenegger/nvim-dap-python"] = {
+  ----------------- JUPYTER CONFIG ---------------------------
+  {
+    "kiyoon/jupynium.nvim",
+    build = "pip install --user .",
+    lazy = false,
     config = function()
-        require('custom.configs.dap-python')
+      require "custom.configs.jupynium"
     end,
+    -- build = "conda run --no-capture-output -n jupynium pip install .",
+    -- enabled = vim.fn.isdirectory(vim.fn.expand "~/miniconda3/envs/jupynium"),
   },
 
+  { "hrsh7th/nvim-cmp", opts = overrides.cmp },
 
-  ['nvim-telescope/telescope.nvim'] = {
-    config = function()
-        require "plugins.configs.telescope"
-        require('telescope').load_extension('dap')
-    end,
-  },
+  "stevearc/dressing.nvim",
+  ----------------------------------------------------------------------
   -- To make a plugin not be loaded
   -- {
   --   "NvChad/nvim-colorizer.lua",
   --   enabled = false
   -- },
 }
-return plugins

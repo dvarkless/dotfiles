@@ -6,15 +6,19 @@ M.treesitter = {
     "lua",
     "html",
     "css",
-    "javascript",
     "c",
     "markdown",
     "markdown_inline",
+    "python",
+    "cpp",
+    "cuda",
+    "arduino",
+    "sql",
   },
   indent = {
     enable = true,
     disable = {
-      "python"
+      "python",
     },
   },
 }
@@ -29,11 +33,8 @@ M.mason = {
     -- web dev stuff
     "css-lsp",
     "html-lsp",
-    "typescript-language-server",
-    "deno",
   },
 }
-
 
 -- git support in nvimtree
 M.nvimtree = {
@@ -50,5 +51,22 @@ M.nvimtree = {
     },
   },
 }
+local cmp = require "cmp"
 
+M.cmp = {
+  sources = {
+    { name = "jupynium", priority = 1000 }, -- consider higher priority than LSP
+    { name = "nvim_lsp", priority = 100 },
+    -- ...
+  },
+  sorting = {
+    priority_weight = 1.0,
+    comparators = {
+      cmp.config.compare.score, -- Jupyter kernel completion shows prior to LSP
+      cmp.config.compare.recently_used,
+      cmp.config.compare.locality,
+      -- ...
+    },
+  },
+}
 return M

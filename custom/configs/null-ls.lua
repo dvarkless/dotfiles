@@ -8,25 +8,21 @@ local b = null_ls.builtins
 
 local sources = {
 
-  b.completion.spell,
+  b.completion.luasnip,
+  b.completion.tags,
 
-  b.diagnostics.codespell,
   b.diagnostics.cppcheck,
+  b.diagnostics.cspell,
   b.diagnostics.cpplint,
   b.diagnostics.markdownlint,
-  b.diagnostics.mypy,
   b.diagnostics.pycodestyle,
 
-  b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
-  b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
-  b.formatting.stylua,
-  b.formatting.autopep8,
+  -- b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
   b.formatting.astyle,
-  b.formatting.codespell,
-  b.formatting.isort,
   b.formatting.pg_format,
 
   b.hover.dictionary,
+  b.code_actions.refactoring,
 
 }
 

@@ -4,7 +4,7 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 
 -- List of servers to install
-local servers = { "html", "cssls", "tsserver", "clangd", 'pyright'}
+local servers = { "html", "cssls", "clangd", 'pyright'}
 
 require("mason-lspconfig").setup({
   ensure_installed = servers,

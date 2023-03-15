@@ -22,3 +22,8 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 export TENSORFLOW_VENV=/run/media/dvarkless/LinuxData/venvs/tensorflow_venv/bin/activate
 export JUPYTER_VENV=/run/media/dvarkless/LinuxData/venvs/jupyter_venv/bin/activate
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+export NEOVIM_VENV=~/.venvs/nvim_venv/bin/activate
+alias kill_jupyter_port=

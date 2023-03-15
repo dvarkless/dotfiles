@@ -1,6 +1,8 @@
 #!/bin/zsh
+cd /run/media/dvarkless/LinuxData/Files/dotfiles
 
 cp ~/.config/nvim/lua/custom . -r
+cp ~/shell_commands . -r
 rm -rf ./custom/.git/
 cp ~/.zshrc zshrc
 cp ~/.bashrc bashrc
