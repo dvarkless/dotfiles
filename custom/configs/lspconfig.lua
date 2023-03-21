@@ -21,6 +21,7 @@ require("mason-lspconfig").setup_handlers({
         on_attach(client, bufnr)
         -- Add your other things here
         -- Example being format on save or something
+        client.documentFormattingProvider = true
       end,
       capabilities = capabilities,
     })

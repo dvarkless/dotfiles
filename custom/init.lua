@@ -14,10 +14,10 @@ vim.opt.expandtab = true -- converts tabs to white space
 vim.opt.shiftwidth = 4 -- width for autoindents
 vim.opt.autoindent = true -- indent a new line the same amount as the line just typed
 vim.opt.smartindent = true
-vim.opt.relativenumber = true -- add line numbers
-vim.opt.iskeyword:append {"_", "-"}
+vim.opt.relativenumber = true --add line numbers
+vim.opt.iskeyword:append "_"
 vim.opt.encoding = "utf-8"
-vim.opt.winminwidth = 5 -- minimum window width
+vim.opt.winminwidth = 10 -- minimum window width
 vim.opt.backup = false
 vim.opt.wildignore = [[
 .git,.hg,.svn
@@ -49,10 +49,14 @@ end
 
 if vim.g.neovide then
   -- Put anything you want to happen only in Neovide here
+  -- Helper function for transparency formatting
 
+  -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+  vim.g.neovide_transparency = 0.7
   vim.o.guifont = "Source Code Pro:h12" -- text below applies for VimScript
   vim.g.neovide_scale_factor = 1.0
-  vim.g.neovide_transparency = 0.4
   vim.g.neovide_hide_mouse_when_typing = true
   vim.g.neovide_cursor_vfx_mode = "railgun"
+  vim.g.neovide_floating_blur_amount_x = 2.0
+  vim.g.neovide_floating_blur_amount_y = 2.0
 end

@@ -137,4 +137,4 @@ ex ()
 }
 export GPG_TTY=$(tty)
 export NEOVIM_VENV=~/.venvs/nvim_venv/bin/activate
-alias kill_jupyter_port=
+alias kill_jupyter_port='fuser -k 8888/tcp'

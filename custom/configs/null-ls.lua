@@ -8,7 +8,6 @@ local b = null_ls.builtins
 
 local sources = {
 
-  b.completion.luasnip,
   b.completion.tags,
 
   b.diagnostics.cppcheck,
@@ -20,6 +19,9 @@ local sources = {
   -- b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
   b.formatting.astyle,
   b.formatting.pg_format,
+  b.formatting.autopep8,
+  b.formatting.isort,
+  b.formatting.stylua,
 
   b.hover.dictionary,
   b.code_actions.refactoring,

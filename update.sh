@@ -9,9 +9,7 @@ cp ~/.bashrc bashrc
 cp ~/.p10k.zsh p10k.zsh
 
 JUPYTER_STR=$(cat ~/.zshrc | grep JUPYTER_VENV)
-echo $JUPYTER_STR
 JUPYTER_VENV=${JUPYTER_STR#*'='}
-echo $JUPYTER_VENV
 source $JUPYTER_VENV
 pip freeze >> requirements_jupyter_venv.txt
 deactivate
@@ -22,7 +20,9 @@ source $TENSORFLOW_VENV
 pip freeze >> requirements_tensorflow_venv.txt
 deactivate
 
-source ~/.venvs/nvim_venv/bin/activate
+NEOVIM_STR=$(cat ~/.zshrc | grep NEOVIM_VENV)
+NEOVIM_VENV=${NEOVIM_STR#*'='}
+source $NEOVIM_VENV
 pip freeze >> requirements_nvim_venv.txt
 deactivate
 

@@ -9,7 +9,7 @@ M.general = {
     ["<C-V>"] = { '"+p', "Paste" },
     ["d"] = { '"_d', "Proper Delete" },
     ["D"] = { '"_D', "Proper Delete" },
-    ["<Del>"] = { '"_<DEL>', "Proper Delete" },
+    ["<Del>"] = { '"_x', "Proper Delete" },
     ["<Leader>cv"] = { "*``cgn", "Change variable" },
     ["<Leader>cV"] = { "#``cgN", "Change variable" },
   },
@@ -17,7 +17,7 @@ M.general = {
   i = {
     ["jk"] = { "<ESC>", "escape vim" },
     ["<C-V>"] = { '<ESC>"+p<ESC>a', "Paste" },
-    ["<Del>"] = { '"_<DEL>', "Proper Delete" },
+    ["<Del>"] = { '"_<Del>', "Proper Delete" },
   },
   v = {
     ["d"] = { '"_d', "Proper Delete" },
@@ -26,8 +26,22 @@ M.general = {
     ["<S-Del>"] = { '"+x', "Cut" },
     ["<C-C>"] = { '"+y', "Copy" },
     ["<C-Insert>"] = { '"+p', "Paste" },
-    ["<Del>"] = { '"_<DEL>', "Proper Delete" },
+    ["<Del>"] = { '"_<Del>', "Proper Delete" },
   },
+}
+
+M.dap = {
+    n = {
+    ["<leader>dd"] = { "<cmd> DapToggleBreakpoint <CR>", "Dap toggle breakpoint" },
+    ["<F5>"] = { "<cmd> DapContinue <CR>", "Dap continue" },
+    ["<F9>"] = { "<cmd> DapStepOver <CR>", "Dap Step over" },
+    ["<F10>"] = { "<cmd> DapStepInto <CR>", "Dap Step into" },
+    ["<F11>"] = { "<cmd> DapStepOut <CR>", "Dap Step out" },
+    ["<leader>dl"] = { "<cmd> DapTerminate <CR>", "Dap terminate" },
+    ["<leader>dr"] = { "<cmd> DapToggleRepl<CR>", "Dap toggle breakpoint" },
+    ["<leader>ld"] = { "<cmd> DapShowLog<CR>", "Dap show log" },
+    ["<leader>dK"] = { '<Cmd>lua require("dap.ui.widgets").hover()<CR>', opts = { silent = true }, "Dap variable definition" },
+    },
 }
 
 M.truzen = {
@@ -41,6 +55,12 @@ M.truzen = {
 M.treesitter = {
   n = {
     ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", "find media" },
+    ["<leader>fo"] = {
+        function ()
+            vim.lsp.buf.code_action()
+        end,
+        'LSP Code action',
+        }
   },
 }
 

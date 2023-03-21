@@ -31,7 +31,17 @@ return {
     },
     config = function() end, -- Override to setup mason-lspconfig
   },
-
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "jose-elias-alvarez/null-ls.nvim",
+    },
+    config = function()
+      require "custom.configs.null-ls" -- require your null-ls config here (example below)
+    end,
+  },
   -- overrde plugin configs
   {
     "nvim-treesitter/nvim-treesitter",
@@ -82,31 +92,72 @@ return {
       require "custom.configs.notify"
     end,
   },
+  {
+    "kylechui/nvim-surround",
+    -- tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    lazy = false,
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
+    end,
+  },
   ------------------------ DEBUG -----------------------------
   {
     "mfussenegger/nvim-dap",
     lazy = false,
+    enabled = true,
     config = function()
       require "custom.configs.dap"
     end,
   },
-
-  {
-    "rcarriga/nvim-dap-ui",
-    lazy = false,
-    config = function()
-      require "custom.configs.dap-ui"
-    end,
-  },
-
   {
     "mfussenegger/nvim-dap-python",
+    requires = "mfussenegger/nvim-dap",
     lazy = false,
+    enabled = true,
     config = function()
       require "custom.configs.dap-python"
     end,
   },
 
+  {
+    "rcarriga/nvim-dap-ui",
+    requires = "mfussenegger/nvim-dap",
+    lazy = false,
+    enabled = true,
+    config = function()
+      require "custom.configs.dap-ui"
+    end,
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    requires = "mfussenegger/nvim-dap",
+    lazy = false,
+    enabled = true,
+    config = function()
+      require "custom.configs.dap-text"
+    end,
+  },
+
+  {
+    "folke/neodev.nvim",
+    requires = "rcarriga/nvim-dap-ui",
+    config = function()
+      require "custom.configs.neodev"
+    end,
+  },
+  {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+    },
+    config = function()
+      require "custom.configs.neotest"
+    end,
+  },
   ----------------- JUPYTER CONFIG ---------------------------
   {
     "kiyoon/jupynium.nvim",
