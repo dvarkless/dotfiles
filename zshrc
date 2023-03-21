@@ -25,6 +25,6 @@ export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-export NEOVIM_VENV=~/.venvs/nvim_venv/bin/activate
+export NEOVIM_VENV=/home/dvarkless/.venvs/nvim_venv/bin/activate
 alias kill_jupyter_port='fuser -k 8888/tcp'
 alias :q=exit

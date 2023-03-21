@@ -33,7 +33,6 @@ pamac list >> system_packages.txt
 
 DATE=$(date +"%x")
 
-
 git add *
 git commit -m "Update files at $DATE"
 git push -u
