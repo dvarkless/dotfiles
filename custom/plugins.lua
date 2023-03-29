@@ -71,6 +71,15 @@ return {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
+
+  {
+    "nvim-telescope/telescope-media-files.nvim",
+    requires = "nvim-telescope/telescope.nvim",
+    after = "nvim-telescope/telescope.nvim",
+    config = function()
+      require "custom.configs.telescope-media"
+    end,
+  },
   ------------------- MISC GENERAL --------------------------------
   {
     "max397574/better-escape.nvim",
