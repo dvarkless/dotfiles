@@ -7,17 +7,15 @@ end
 local b = null_ls.builtins
 
 local sources = {
-
+  b.completion.tags,
   b.completion.tags,
 
-  b.diagnostics.cppcheck,
+  b.diagnostics.clang_check,
   b.diagnostics.cspell,
-  b.diagnostics.cpplint,
   b.diagnostics.markdownlint,
   b.diagnostics.pycodestyle,
 
-  -- b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } }, -- so prettier works only on these filetypes
-  b.formatting.astyle,
+  -- b.formatting.astyle,
   b.formatting.pg_format,
   b.formatting.autopep8,
   b.formatting.isort,
@@ -25,7 +23,6 @@ local sources = {
 
   b.hover.dictionary,
   b.code_actions.refactoring,
-
 }
 
 null_ls.setup {
