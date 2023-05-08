@@ -14,6 +14,7 @@ local sources = {
   b.diagnostics.cspell,
   b.diagnostics.markdownlint,
   b.diagnostics.pycodestyle,
+  b.diagnostics.codespell,
 
   -- b.formatting.astyle,
   b.formatting.pg_format,

@@ -53,7 +53,7 @@ if vim.g.neovide then
 
   -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
   vim.g.neovide_transparency = 0.7
-  vim.o.guifont = "JetBrainsMono Nerd Font:h14" -- text below applies for VimScript
+  vim.o.guifont = "JetBrainsMono Nerd Font:h12" -- text below applies for VimScript
   vim.g.neovide_scale_factor = 1.0
   vim.g.neovide_hide_mouse_when_typing = true
   vim.g.neovide_cursor_vfx_mode = "railgun"
