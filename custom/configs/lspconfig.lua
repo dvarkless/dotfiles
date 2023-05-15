@@ -2,6 +2,7 @@ local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
+local util = require "lspconfig/util"
 
 local DEFAULT_FQBN = "arduino:avr:nano"
 
@@ -9,7 +10,7 @@ local my_arduino_fqbn = {
   ["/run/media/dvarkless/WindowsData/LinuxExchange/arduino/GrowLanternLCD"] = "arduino:avr:nano",
 }
 -- List of servers to install
-local servers = { "html", "cssls", "clangd", "pyright"}
+local servers = { "html", "cssls", "clangd", "pyright", "rust-analyzer" }
 
 require("mason-lspconfig").setup {
   ensure_installed = servers,
@@ -58,22 +59,21 @@ require("mason-lspconfig").setup_handlers {
   end,
 }
 
-  lspconfig.arduino_language_server.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    on_new_config = function(config, root_dir)
-      local fqbn = my_arduino_fqbn[root_dir]
-      if not fqbn then
-        vim.notify(("Could not find which FQBN to use in %q. Defaulting to %q."):format(root_dir, DEFAULT_FQBN))
-        fqbn = DEFAULT_FQBN
-      end
-      config.cmd = {
-        "arduino-language-server",
-        "-cli-config",
-        "/home/dvarkless/.arduino15/arduino-cli.yaml",
-        "-fqbn",
-        fqbn,
-      }
-    end,
-  }
-
+lspconfig.arduino_language_server.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  on_new_config = function(config, root_dir)
+    local fqbn = my_arduino_fqbn[root_dir]
+    if not fqbn then
+      vim.notify(("Could not find which FQBN to use in %q. Defaulting to %q."):format(root_dir, DEFAULT_FQBN))
+      fqbn = DEFAULT_FQBN
+    end
+    config.cmd = {
+      "arduino-language-server",
+      "-cli-config",
+      "/home/dvarkless/.arduino15/arduino-cli.yaml",
+      "-fqbn",
+      fqbn,
+    }
+  end,
+}

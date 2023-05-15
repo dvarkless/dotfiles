@@ -31,7 +31,7 @@ M.general = {
 }
 
 M.dap = {
-    n = {
+  n = {
     ["<leader>dd"] = { "<cmd> DapToggleBreakpoint <CR>", "Dap toggle breakpoint" },
     ["<F5>"] = { "<cmd> DapContinue <CR>", "Dap continue" },
     ["<F9>"] = { "<cmd> DapStepOver <CR>", "Dap Step over" },
@@ -40,8 +40,12 @@ M.dap = {
     ["<leader>dl"] = { "<cmd> DapTerminate <CR>", "Dap terminate" },
     ["<leader>dr"] = { "<cmd> DapToggleRepl<CR>", "Dap toggle breakpoint" },
     ["<leader>ld"] = { "<cmd> DapShowLog<CR>", "Dap show log" },
-    ["<leader>dK"] = { '<Cmd>lua require("dap.ui.widgets").hover()<CR>', opts = { silent = true }, "Dap variable definition" },
+    ["<leader>dK"] = {
+      '<Cmd>lua require("dap.ui.widgets").hover()<CR>',
+      opts = { silent = true },
+      "Dap variable definition",
     },
+  },
 }
 
 M.truzen = {
@@ -56,11 +60,11 @@ M.treesitter = {
   n = {
     ["<leader>cu"] = { "<cmd> TSCaptureUnderCursor <CR>", "find media" },
     ["<leader>fo"] = {
-        function ()
-            vim.lsp.buf.code_action()
-        end,
-        'LSP Code action',
-        }
+      function()
+        vim.lsp.buf.code_action()
+      end,
+      "LSP Code action",
+    },
   },
 }
 
@@ -112,6 +116,17 @@ M.nvterm = {
       end,
 
       "compile & run a cpp file",
+    },
+  },
+}
+
+M.crates = {
+  n = {
+    ["<leader>rcu"] = {
+      function()
+        require("crates").upgrade_all_crates()
+      end,
+      "Upgrade crates",
     },
   },
 }

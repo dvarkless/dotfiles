@@ -57,6 +57,7 @@ M.cmp = {
   sources = {
     { name = "jupynium", priority = 1000 }, -- consider higher priority than LSP
     { name = "nvim_lsp", priority = 100 },
+    { name = "crates"},
     -- ...
   },
   sorting = {
