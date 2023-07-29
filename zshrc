@@ -29,3 +29,4 @@ export NEOVIM_VENV=/home/dvarkless/.venvs/nvim_venv/bin/activate
 alias kill_jupyter_port='fuser -k 8888/tcp'
 alias :q=exit
 export NUMBA_COLOR_SCHEME=dark_bg
+export EDITOR='/usr/bin/nvim'
