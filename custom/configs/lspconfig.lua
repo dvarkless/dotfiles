@@ -10,7 +10,7 @@ local my_arduino_fqbn = {
   ["/run/media/dvarkless/WindowsData/LinuxExchange/arduino/GrowLanternLCD"] = "arduino:avr:nano",
 }
 -- List of servers to install
-local servers = { "html", "cssls", "clangd", "pyright", "rust-analyzer" }
+local servers = { "html", "cssls", "clangd", "pyright", "sqlls"}
 
 require("mason-lspconfig").setup {
   ensure_installed = servers,
