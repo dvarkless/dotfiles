@@ -139,3 +139,6 @@ export GPG_TTY=$(tty)
 export NEOVIM_VENV=/home/dvarkless/.venvs/nvim_venv/bin/activate
 alias kill_jupyter_port='fuser -k 8888/tcp'
 . "$HOME/.cargo/env"
+
+alias upload_backup='rclone sync /run/media/dvarkless/LinuxData/Cloud/ cloud_drive15G:files_backup'
+alias download_backup='rclone sync cloud_drive15G:files_backup /run/media/dvarkless/LinuxData/Cloud/'
