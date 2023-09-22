@@ -47,18 +47,6 @@ for _, plugin in pairs(enable_providers) do
   vim.cmd("runtime " .. plugin)
 end
 
-vim.g.completion_auto_change_source = true
-vim.g.completion_chain_complete_list = {
-  default = {
-    default = {
-      { complete_items = {'lsp', 'snippets'} },
-    },
-   string = {
-      { mode = 'file' },  -- use ins-complete "files" (search     ins-compl in completion-nvim help)
-   },
-  },
-}
-
 if vim.g.neovide then
   -- Put anything you want to happen only in Neovide here
   -- Helper function for transparency formatting
@@ -72,3 +60,4 @@ if vim.g.neovide then
   vim.g.neovide_floating_blur_amount_x = 2.0
   vim.g.neovide_floating_blur_amount_y = 2.0
 end
+

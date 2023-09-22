@@ -11,10 +11,6 @@ M.ui = {
   hl_add = highlights.add,
 
   transparency = true,
-  tabufline = {
-    lazyload = true,
-    overriden_modules = nil,
-  },
 }
 
 M.plugins = "custom.plugins"
