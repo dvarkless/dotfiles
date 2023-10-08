@@ -28,6 +28,14 @@ local VICUNA_SYS_END = "\n\n"
 local VICUNA_INST_BEGIN = "USER:\n"
 local VICUNA_INST_END = "\nASSISTANT:\n"
 
+local CHATML_SYS_BEGIN = "<|im_start|>system\n"
+local CHATML_SYS_END = "<|im_end|>\n"
+local CHATML_INST_BEGIN = "<|im_start|>user\n"
+local CHATML_INST_END = "<|im_end|>\n<|im_start|>assistant\n"
+
+
+
+
 -- Current model is "Nous Hermes Code" (Alpaca template)
 local llama_params = {
   temperature = 0.2, -- Adjust the randomness of the generated text (default: 0.8).
@@ -38,51 +46,21 @@ local llama_params = {
   mirostat_eta = 0.1,
 }
 
+local llama_params_high_temp = {
+  temperature = 0.7, -- Adjust the randomness of the generated text (default: 0.8).
+  seed = -1, -- Set the random number generator (RNG) seed (default: -1, -1 = random seed)
+  n_predict = 1200,
+  mirostat = 2,
+  mirostat_tau = 5.0,
+  mirostat_eta = 0.1,
+}
+
+
 local SYSTEM_BEGIN = ALPACA_SYS_BEGIN
 local SYSTEM_END = ALPACA_SYS_END
 local INST_BEGIN = ALPACA_INST_BEGIN
 local INST_END = ALPACA_INST_END
 
-local function standard_code(input, context)
-  local surrounding_text = prompts.limit_before_after(context, 30)
-
-  local instruction =
-    "Replace the token <@@> with valid code. Respond only with code, never respond with an explanation, never respond with a markdown code block containing the code. Generate only code that is meant to replace the token, do not regenerate code in the context."
-
-  local fewshot = {
-    {
-      role = "user",
-      content = 'The code:\n```\nfunction greet(name) { console.log("Hello " <@@>) }\n```\n\nExisting text at <@@>:\n```+ nme```\n',
-    },
-    {
-      role = "assistant",
-      content = "+ name",
-    },
-  }
-
-  local content = "The code:\n```\n" .. surrounding_text.before .. "<@@>" .. surrounding_text.after .. "\n```\n"
-
-  if #input > 0 then
-    content = content .. "\n\nExisting text at <@@>:\n```" .. input .. "```\n"
-  end
-
-  if #context.args > 0 then
-    content = content .. context.args
-  end
-
-  local messages = {
-    {
-      role = "user",
-      content = content,
-    },
-  }
-
-  return {
-    instruction = instruction,
-    fewshot = fewshot,
-    messages = messages,
-  }
-end
 
 local function wrap_instr(text)
   return table.concat({
@@ -170,6 +148,7 @@ local replace = {
 
 local commit = {
   provider = llamacpp,
+  params = llama_params_high_temp,
   mode = llm.mode.INSERT,
   builder = function()
     local git_diff = vim.fn.system { "git", "diff", "--staged" }
@@ -192,6 +171,7 @@ local commit = {
 
 local unittest = {
   provider = llamacpp,
+  params = llama_params_high_temp,
   mode = llm.mode.INSERT,
   builder = function(input)
     return function(build)
@@ -208,6 +188,8 @@ local unittest = {
 
 local to_russian = {
   provider = llamacpp,
+  params = llama_params,
+  hl_group = 'SpecialComment',
   mode = llm.mode.REPLACE,
   builder = function(input)
     return function(build)
@@ -230,3 +212,4 @@ require("llm").setup {
     replace = replace,
   },
 }
+
