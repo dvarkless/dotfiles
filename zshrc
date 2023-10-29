@@ -33,3 +33,5 @@ export EDITOR='/usr/bin/nvim'
 
 alias upload_backup='rclone sync /run/media/dvarkless/LinuxData/Cloud/ cloud_drive15G:files_backup'
 alias download_backup='rclone sync cloud_drive15G:files_backup /run/media/dvarkless/LinuxData/Cloud/'
+alias sync_logseq_upload='rclone bisync --resilient /run/media/dvarkless/LinuxData/localwiki/ cloud_drive15G:localwiki'
+alias sync_logseq_download='rclone bisync --resilient cloud_drive15G:localwiki /run/media/dvarkless/LinuxData/localwiki/'

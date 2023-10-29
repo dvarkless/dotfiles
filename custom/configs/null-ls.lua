@@ -7,8 +7,7 @@ end
 local b = null_ls.builtins
 
 local sources = {
-  b.completion.tags,
-  b.completion.tags,
+  -- b.completion.tags,
 
   b.diagnostics.clang_check,
   b.diagnostics.cspell,
@@ -21,6 +20,7 @@ local sources = {
   b.formatting.autopep8,
   b.formatting.isort,
   b.formatting.stylua,
+  b.formatting.beautysh,
 
   b.hover.dictionary,
   b.code_actions.refactoring,
