@@ -142,3 +142,4 @@ alias kill_jupyter_port='fuser -k 8888/tcp'
 
 alias upload_backup='rclone sync /run/media/dvarkless/LinuxData/Cloud/ cloud_drive15G:files_backup'
 alias download_backup='rclone sync cloud_drive15G:files_backup /run/media/dvarkless/LinuxData/Cloud/'
+alias sync_passwords='rclone sync /home/dvarkless/.password-store cloud_drive15G:password-store --create-empty-src-dirs'

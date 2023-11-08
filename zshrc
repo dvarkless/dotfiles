@@ -35,3 +35,4 @@ alias upload_backup='rclone sync /run/media/dvarkless/LinuxData/Cloud/ cloud_dri
 alias download_backup='rclone sync cloud_drive15G:files_backup /run/media/dvarkless/LinuxData/Cloud/'
 alias sync_logseq_upload='rclone bisync --resilient /run/media/dvarkless/LinuxData/localwiki/ cloud_drive15G:localwiki'
 alias sync_logseq_download='rclone bisync --resilient cloud_drive15G:localwiki /run/media/dvarkless/LinuxData/localwiki/'
+alias sync_passwords='rclone sync /home/dvarkless/.password-store cloud_drive15G:password-store --create-empty-src-dirs'
